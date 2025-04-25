@@ -1,8 +1,27 @@
+package com.VirtualCoffee.orders.service;
+
+import com.VirtualCoffee.orders.controller.request.OrderRequest;
+import com.VirtualCoffee.orders.exception.BeverageUnavailableException;
+import com.VirtualCoffee.orders.model.Order;
+import com.VirtualCoffee.orders.repository.OrderRepository;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
 @ExtendWith(MockitoExtension.class)
 class OrderServiceTest {
 
     @Mock
-    private BeverageClient beverageClient; // simula la API de bebidas
+    private BeverageClient beverageClient;
 
     @Mock
     private OrderRepository orderRepository;
@@ -64,6 +83,4 @@ class OrderServiceTest {
         assertEquals(2, result.size());
         assertEquals("Latte", result.get(0).getName());
     }
-
-
 }
