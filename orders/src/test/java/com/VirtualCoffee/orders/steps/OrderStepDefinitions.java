@@ -43,5 +43,18 @@ public class OrderStepDefinitions {
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertTrue(response.getBody().contains("Latte")); // o lo que esperes
     }
+
+    @Given("la bebida {string} de tamaño {string} no está disponible")
+    public void bebidaNoDisponible(String name, String size) {
+        // No se registra nada, simplemente se envía el pedido sin existencia previa.
+    }
+
+    @Then("el sistema debe responder con estado 400 o 404")
+    public void sistemaDebeRechazarPedido() {
+        int statusCode = response.getStatusCode().value();
+        assertTrue("Se esperaba 400 o 404 pero fue: " + statusCode,
+                statusCode == 400 || statusCode == 404);
+    }
+
 }
 
